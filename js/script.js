@@ -9,13 +9,7 @@ window.addEventListener('load', function () {
     btnPrev.addEventListener('click', function () {
         images[i].classList.remove('showed');
 
-
-        images[i].animate([
-            {transform: 'translateX(0px)'},
-            {transform: 'translateX(100%)'}
-        ], {
-            duration: 1000
-        })
+        animation(images[i], '0px', "100%")
 
         i--;
 
@@ -23,12 +17,7 @@ window.addEventListener('load', function () {
             i = images.length - 1;
         }
 
-        images[i].animate([
-            {transform: 'translateX(-100%)'},
-            {transform: 'translateX(0px)'}
-        ], {
-            duration: 1000
-        })
+        animation(images[i], '-100%')
 
         images[i].classList.add('showed');
     });
@@ -36,12 +25,7 @@ window.addEventListener('load', function () {
     btnNext.addEventListener('click', function () {
         images[i].classList.remove('showed');
 
-        images[i].animate([
-            {transform: 'translateX(0px)'},
-            {transform: 'translateX(-100%)'}
-        ], {
-            duration: 1000
-        })
+        animation(images[i], '0px', "-100%")
 
         i++;
 
@@ -49,15 +33,17 @@ window.addEventListener('load', function () {
             i = 0;
         }
 
-
-        images[i].animate([
-            {transform: 'translateX(100%)'},
-            {transform: 'translateX(0)'}
-        ], {
-            duration: 1000
-        })
+        animation(images[i], '100%')
 
         images[i].classList.add('showed');
     });
 
+    const animation = (selector, firstParam, secondParam = '0px') => {
+        selector.animate([
+            {transform: `translateX(${firstParam})`},
+            {transform: `translateX(${secondParam})`}
+        ], {
+            duration: 1000
+        })
+    }
 });
